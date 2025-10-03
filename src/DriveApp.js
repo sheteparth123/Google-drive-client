@@ -14,7 +14,7 @@ function DriveApp() {
   }, []);
 
   const fetchFiles = async () => {
-    const res = await axios.get("http://localhost:8080/api/files/list");
+    const res = await axios.get("https://google-drive-server-production.up.railway.app/api/files/list");
     setFiles(res.data);
   };
 
@@ -22,7 +22,7 @@ function DriveApp() {
     const formData = new FormData();
     formData.append("file", file);
 
-    await axios.post("http://localhost:8080/api/files/upload", formData, {
+    await axios.post("https://google-drive-server-production.up.railway.app/api/files/upload", formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
@@ -30,7 +30,7 @@ function DriveApp() {
   };
 
   const handleDownload = (id) => {
-    window.location.href = `http://localhost:8080/api/files/download/${id}`;
+    window.location.href = `https://google-drive-server-production.up.railway.app/api/files/download/${id}`;
   };
 
   const handleDelete = async (id, fileName) => {
@@ -39,7 +39,7 @@ function DriveApp() {
     );
     if (!confirmed) return;
 
-    await axios.delete(`http://localhost:8080/api/files/delete/${id}`);
+    await axios.delete(`https://google-drive-server-production.up.railway.app/api/files/delete/${id}`);
     fetchFiles();
   };
 
